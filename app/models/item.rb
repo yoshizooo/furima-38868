@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :schedule_date
   belongs_to :user
   has_one_attached :image
+  has_one :purchase_history
 
   validates :image, presence: true
   validates :product_name, presence: true, length: { maximum: 40, allow_blank: true }
