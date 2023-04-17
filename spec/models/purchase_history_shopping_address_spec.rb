@@ -76,6 +76,16 @@ RSpec.describe PurchaseHistoryShoppingAddress, type: :model do
         @purchase_history_shopping_address.valid?
         expect(@purchase_history_shopping_address.errors.full_messages).to include("Telephone number Phone number is invalid. Input only number")
       end
+      it 'userが紐付いていなければ購入できない' do
+        @purchase_history_shopping_address.user_id = nil
+        @purchase_history_shopping_address.valid?
+        expect(@purchase_history_shopping_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'itemが紐付いていなければ購入できない' do
+        @purchase_history_shopping_address.item_id = nil
+        @purchase_history_shopping_address.valid?
+        expect(@purchase_history_shopping_address.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end

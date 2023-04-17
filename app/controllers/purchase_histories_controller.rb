@@ -30,7 +30,6 @@ class PurchaseHistoriesController < ApplicationController
   end
 
   def outUser
-    @item = Item.find(params[:item_id])
     unless @item.purchase_history == nil && current_user.id != @item.user.id 
       redirect_to root_path
     end
