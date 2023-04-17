@@ -59,12 +59,18 @@ RSpec.describe PurchaseHistoryShoppingAddress, type: :model do
         @purchase_history_shopping_address.valid?
         expect(@purchase_history_shopping_address.errors.full_messages).to include("Telephone number can't be blank")
       end
-      it '電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと' do
-        @purchase_history_shopping_address.telephone_number ='121'
+      it '電話番号は、9桁以下は保存できない' do
+        @purchase_history_shopping_address.telephone_number ='123456789'
         @purchase_history_shopping_address.valid?
         expect(@purchase_history_shopping_address.errors.full_messages).to include("Telephone number Phone number is invalid. Input only number",
           "Telephone number is too short (minimum is 10 characters)")
       end
+      it '電話番号は、12桁以上は保存できない' do
+        @purchase_history_shopping_address.telephone_number ='123456789012'
+        @purchase_history_shopping_address.valid?
+        expect(@purchase_history_shopping_address.errors.full_messages).to include("Telephone number Phone number is invalid. Input only number",
+          "Telephone number is too long (maximum is 11 characters)")
+        end
       it '電話番号は、半角数値のみ保存可能なこと' do
         @purchase_history_shopping_address.telephone_number ='１２３４５６７８９１'
         @purchase_history_shopping_address.valid?

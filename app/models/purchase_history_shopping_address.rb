@@ -1,6 +1,6 @@
 class PurchaseHistoryShoppingAddress
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :municipalities, :address, :building_name, :telephone_number, :user_id, :item_id
+  attr_accessor :post_code, :prefecture_id, :municipalities, :address, :building_name, :telephone_number, :user_id, :item_id, :token
 
   VALID_PostCode_REGEX = /\A\d{3}-\d{4}\z/i.freeze
   VALID_TelephoneNumber_REGEX = /\A\d{10,11}\z/i.freeze
@@ -28,6 +28,5 @@ class PurchaseHistoryShoppingAddress
                            building_name: building_name, telephone_number: telephone_number, purchase_history_id: purchase_history.id)
   end
 
-  attr_accessor :token
 
 end
